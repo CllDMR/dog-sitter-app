@@ -1,24 +1,27 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { RootState } from "@typings/MyRedux";
+import { RootState } from "MyTypes";
 import {
   ServiceTopics as Component,
-  ServiceTopicsProps,
-  ServiceTopicsLinkStateProps,
-  ServiceTopicsLinkDispatchProps
+  ServiceTopicsProps
 } from "@components/services/ServiceTopics";
+import { loadTopicsAsync } from "@redux/features/topic/actions";
 
-const mapStateToProps = (
-  state: RootState,
-  _ownProps: ServiceTopicsProps
-): ServiceTopicsLinkStateProps => ({
-  topics: state.service.topics
+export type ServiceTopicsLinkStateProps = ReturnType<typeof mapStateToProps>;
+export type ServiceTopicsLinkDispatchProps = ReturnType<
+  typeof mapDispatchToProps
+>;
+
+const mapStateToProps = (state: RootState, _ownProps: ServiceTopicsProps) => ({
+  topics: state.topic.topics
 });
 
 const mapDispatchToProps = (
-  _dispatch: Dispatch,
+  dispatch: Dispatch,
   _ownProps: ServiceTopicsProps
-): ServiceTopicsLinkDispatchProps => ({});
+) => ({
+  fetchTopics: () => dispatch(loadTopicsAsync.request())
+});
 
 export const ServiceTopics = connect(
   mapStateToProps,

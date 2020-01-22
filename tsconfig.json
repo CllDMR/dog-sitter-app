@@ -15,11 +15,13 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
 
     "baseUrl": "./src",
     "paths": {
+      "@assets/*": ["../../assets/*"],
+      "@redux/*": ["./redux/*"],
       "@components": ["./components"],
       "@components/*": ["./components/*"],
       "@screens": ["./screens"],
@@ -29,10 +31,7 @@
       "@constants": ["./constants"],
       "@constants/*": ["./constants/*"],
       "@typings": ["./typings"],
-      "@typings/*": ["./typings/*"],
-      "@example-actions": ["./redux/features/example/actions.ts"],
-      "@post-actions": ["./redux/features/post/actions.ts"],
-      "@token-actions": ["./redux/features/token/actions.ts"]
+      "@typings/*": ["./typings/*"]
     }
   }
 }

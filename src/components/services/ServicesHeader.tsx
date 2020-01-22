@@ -1,28 +1,37 @@
 import React, { FC } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Colors } from "@constants/Theme";
 
-export type ServicesHeaderProps = {};
+export type ServicesHeaderProps = {
+  onPressViewAll: () => void;
+};
 
-export const ServicesHeader: FC<ServicesHeaderProps> = ({}) => {
+export const ServicesHeader: FC<ServicesHeaderProps> = ({ onPressViewAll }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My Services</Text>
-      <Text style={styles.viewText}>View All</Text>
+      <TouchableOpacity
+        activeOpacity={1.0}
+        onPress={onPressViewAll}
+        hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
+      >
+        <Text style={styles.viewAllText}>View All</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    paddingVertical: 20,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   title: {
     fontSize: 20
   },
-  viewText: {
+  viewAllText: {
     color: Colors.orange,
     fontSize: 16
   }

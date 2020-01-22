@@ -5,7 +5,7 @@ import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 import { Provider } from "react-redux";
 import AppNavigator from "./src/navigation";
-import makeStore from "./src/redux/store";
+import store from "./src/redux/store";
 import { setCustomText } from "react-native-global-props";
 
 type Props = {};
@@ -51,7 +51,7 @@ class App extends React.Component<Props, State> {
     }
 
     return (
-      <Provider store={makeStore(undefined)}>
+      <Provider store={store}>
         {Platform.OS === "ios" && <StatusBar barStyle="light-content" />}
         <AppNavigator />
       </Provider>
@@ -67,11 +67,16 @@ class App extends React.Component<Props, State> {
     SplashScreen.hide();
     const images = [
       require("./assets/images/icon.png"),
-      require("./assets/images/splash.png")
+      require("./assets/images/splash.png"),
+      require("./assets/images/dog-walk.png")
     ];
 
     const cacheImages = images.map(image => {
-      return Asset.fromModule(image).downloadAsync();
+      if (typeof image === "string") {
+        return Image.prefetch(image);
+      } else {
+        return Asset.fromModule(image).downloadAsync();
+      }
     });
 
     const cacheFonts = Font.loadAsync({

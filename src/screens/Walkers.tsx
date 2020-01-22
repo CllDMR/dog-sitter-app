@@ -1,11 +1,17 @@
+import StackHeader from "@components/StackHeader";
+import {
+  WalkersScreenLinkDispatchProps,
+  WalkersScreenLinkStateProps
+} from "@connected/screens/Walkers";
 import React, { Component } from "react";
-import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
 import { NavigationStackProp } from "react-navigation-stack";
-import { StackHeader } from "@components";
 
-type Props = {
-  navigation: NavigationStackProp;
-};
+export type WalkersScreenProps = { navigation: NavigationStackProp };
+
+type Props = WalkersScreenProps &
+  WalkersScreenLinkStateProps &
+  WalkersScreenLinkDispatchProps;
 
 type State = {};
 

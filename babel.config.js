@@ -17,16 +17,15 @@ module.exports = function(api) {
             ".ios.tsx"
           ],
 
-          root: "./src",
+          // root: "./src",
           alias: {
+            "@assets": "./assets",
+            "@redux": "./src/redux",
             "@components": "./src/components",
             "@screens": "./src/screens",
             "@connected": "./src/connected",
             "@constants": "./src/constants",
-            "@typings": "./src/typings",
-            "@example-actions": "./src/redux/features/example/actions.ts",
-            "@post-actions": "./src/redux/features/post/actions.ts",
-            "@token-actions": "./src/redux/features/token/actions.ts"
+            "@typings": "./src/typings"
           }
         }
       ]

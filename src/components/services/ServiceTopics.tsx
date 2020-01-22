@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import { StyleSheet, Dimensions, View, Text } from "react-native";
-import { FontAwesome, Feather, Entypo, Foundation } from "@expo/vector-icons";
-
-import { TopicType } from "@typings/Service/state";
+import { Entypo, Feather, FontAwesome, Foundation } from "@expo/vector-icons";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
+import {
+  ServiceTopicsLinkStateProps,
+  ServiceTopicsLinkDispatchProps
+} from "@connected/components/services/ServiceTopics";
 
 const { width } = Dimensions.get("window");
 
@@ -31,35 +33,24 @@ const Icon: FC<IconProps> = ({ name, library, color }) => {
   }
 };
 
-type TopicProps = {
-  title: string;
-  icon: IconProps;
-};
-
-const Topic: FC<TopicProps> = ({ title, icon }) => {
-  return (
-    <View style={styles.card}>
-      <Icon {...icon} />
-      <Text>{title}</Text>
-    </View>
-  );
-};
-
 export type ServiceTopicsProps = {};
-
-export type ServiceTopicsLinkStateProps = { topics: TopicType[] };
-
-export type ServiceTopicsLinkDispatchProps = {};
 
 type Props = ServiceTopicsProps &
   ServiceTopicsLinkStateProps &
   ServiceTopicsLinkDispatchProps;
 
-export const ServiceTopics: FC<Props> = ({ topics }) => {
+export const ServiceTopics: FC<Props> = ({ topics, fetchTopics }) => {
+  // useEffect(() => {
+  //   fetchTopics();
+  // }, []);
+
   return (
     <View style={styles.container}>
       {topics.map(({ title, icon }, index) => (
-        <Topic key={`card-${index}`} title={title} icon={icon} />
+        <View key={`card-${index}`} style={styles.card}>
+          <Icon {...icon} />
+          <Text>{title}</Text>
+        </View>
       ))}
     </View>
   );
